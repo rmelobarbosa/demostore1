@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <!-- ALTERAVEL -->
+  <title>Ilha Food Park</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <style>
+    main {
+      width: 100%;
+      height: calc(100vh - 56px);
+
+      box-sizing: border-box;
+    }
+
+    main iframe {
+      border: 0;
+    }
+  </style>
+
+  <nav class="navbar">
+    <button id="back-btn" type="button">
+      <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+      </svg>
+    </button>
+    <h1 id="navbar-header"></h1>
+    <div></div>
+  </nav>
+
+  <main id="main"></main>
+
+  <script type="module">
+    (function() {
+      const selectedStore = JSON.parse(localStorage.getItem("@Marketplace:selected-store"));
+      document.getElementById('back-btn').addEventListener('click', () => {
+        window.location.href = `/ilhafood`;
+      });
+
+      document.getElementById('navbar-header').innerHTML = selectedStore.name;
+      const main = document.getElementById('main')
+      const iframe = document.createElement('iframe')
+      iframe.src = `https://meupedido.delivery/${selectedStore.url}/`
+      iframe.title = selectedStore.name;
+      iframe.style.width = '100%'
+      iframe.style.height = '100%'
+
+      main.appendChild(iframe)
+    })();
+  </script>
+</body>
+</html>

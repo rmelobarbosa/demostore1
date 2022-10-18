@@ -1,0 +1,88 @@
+:root {
+  /* ALTERAVEL */
+  --primary-color: #ef4444;
+  --background-color: #e2e8f0;
+  --cards-color: #fff;
+  --title-color: #0f172a;
+  --text-color: #334155;
+  --subtitle-color: #475569;
+  --placeholder-color: #94a3b8;
+  --light-text-color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  background-color: var(--background-color);
+  box-sizing: border-box;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  transition: .2s;
+  display: grid;
+  place-items: center;
+}
+
+button:hover {
+  filter: brightness(0.95);
+}
+
+h1 {
+  font-size: 1.25rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--title-color);
+}
+/* UTILS */
+
+.hidden {
+  display: none;
+}
+
+/* NAVBAR */
+
+.navbar {
+  width: 100%;
+  height: 56px;
+  padding: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  background-color: var(--primary-color);
+}
+
+.navbar h1,
+.navbar button svg {
+  color: var(--light-text-color);
+}
+
+/* MEDIA QUERY */
+
+@media (min-width: 768px) {
+  .navbar {
+    padding: 0.5rem 2rem;
+    color: var(--light-text-color) !important;
+  }
+}

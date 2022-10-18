@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <!-- ALTERAVEL -->
+  <title>Ilha Food Park</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <style>
+    /* SEARCH INPUT */
+    .input-filter {
+      background-color: var(--cards-color);
+      box-sizing: border-box;
+    }
+
+    .input-filter div {
+      width: 100%;
+      max-width: 768px;
+      padding: 0.5rem;
+      margin: 0 auto;
+      box-sizing: border-box;
+      display: flex;
+      gap: 8px;
+    }
+
+    .input-filter div input {
+      width: 100%;
+      padding: 6px;
+      border-radius: 6px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 768px;
+      padding: 1rem;
+      margin: 0 auto;
+
+      box-sizing: border-box;
+    }
+
+    /* FILTERS */
+
+    .filters {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+
+      margin-bottom: 1rem;
+    }
+
+    .filter-btn {
+      background-color: var(--cards-color);
+      border-radius: 0.4rem;
+      width: 80px;
+      height: 80px;
+      padding: 1rem 0;
+      box-sizing: border-box;
+    }
+
+    .filter-activated {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+
+    .filter-btn svg {
+      color: var(--text-color);
+    }
+
+    .filter-activated svg {
+      color: var(--light-text-color);
+    }
+
+    .filter-btn~.filter-btn {
+      margin-left: 0.5rem;
+    }
+
+    /* BANNER */
+
+    .banner {
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+    }
+
+    .banner img {
+      width: 100%;
+      height: 150px;
+      min-width: 100%;
+      background-color: var(--placeholder-color);
+      border-radius: 0.5rem;
+      object-fit: cover;
+    }
+
+    #banner-desktop {
+      display: none;
+    }
+
+    #banner-mobile {
+      display: block;
+    }
+
+    /* ORGANIZATIONS LIST */
+
+    .org ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .org ul li~li {
+      margin-top: 0.5rem;
+    }
+
+    /* ORGANIZATION CARD */
+
+    .org-card {
+      width: 100%;
+      height: 130px;
+      background-color: var(--cards-color);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .card-img {
+      width: 130px;
+    }
+
+    .card-img img {
+      width: 100%;
+      min-width: 100%;
+      min-height: 100%;
+      height: 100%;
+      background-color: var(--placeholder-color);
+      border-radius: 0.5rem 0 0 0.5rem;
+      object-fit: cover;
+    }
+
+    .card-info {
+      flex: 1;
+      padding: 0.5rem 1rem 2rem;
+    }
+
+    .card-info p {
+      margin: 0;
+      text-align: left;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-info .header {
+      color: var(--title-color);
+      font-size: 1.15rem;
+    }
+
+    .card-info .tags {
+      color: var(--subtitle-color);
+    }
+
+    @media (min-width: 768px) {
+      #banner-desktop {
+        display: block;
+      }
+
+      #banner-mobile {
+        display: none;
+      }
+
+      .org ul {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .org ul li~li {
+        margin-top: 0;
+      }
+    }
+  </style>
+
+  <nav class="navbar">
+    <div></div>
+    <h1 id="navbar-header"></h1>
+    <button type="button" id="filter-input-btn">
+      <svg id="search-svg" style="width:24px;height:24px" viewBox="0 0 24 24">
+        <path fill="currentColor"
+          d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+      </svg>
+
+      <svg id="close-svg" class="hidden" style="width:24px;height:24px" viewBox="0 0 24 24">
+        <path fill="currentColor"
+          d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+      </svg>
+    </button>
+  </nav>
+
+  <section id="input-filter" class="input-filter hidden">
+    <div>
+      <input id="search-input" type="text" placeholder="Digite sua pesquisa..." />
+    </div>
+  </section>
+
+  <main>
+    <section id="filters" class="filters">
+
+      <!-- ALTERAVEL -->
+      <!-- *BOTOES DE FILTRO: Para criar um novo botão de filtro é só criar um novo botão com a classe "filter-btn" e adicionar um id referente a tag que será filtrada. A label da tag fica dentro do span e para trocar o icone basta trocar o svg. * -->
+
+      <button type="button" id="all" class="filter-btn filter-activated">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
+        </svg>
+        <span>Todos</span>
+      </button>
+
+      <button type="button" id="restaurante" class="filter-btn">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M11,9H9V2H7V9H5V2H3V9C3,11.12 4.66,12.84 6.75,12.97V22H9.25V12.97C11.34,12.84 13,11.12 13,9V2H11V9M16,6V14H18.5V22H21V2C18.24,2 16,4.24 16,6Z" /> 
+		  </svg>
+        <span>Restaurante</span>
+      </button>
+
+      <button type="button" id="pizza" class="filter-btn">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+ <path fill="currentColor" d="M12,15A2,2 0 0,1 10,13C10,11.89 10.9,11 12,11A2,2 0 0,1 14,13A2,2 0 0,1 12,15M7,7C7,5.89 7.89,5 9,5A2,2 0 0,1 11,7A2,2 0 0,1 9,9C7.89,9 7,8.1 7,7M12,2C8.43,2 5.23,3.54 3,6L12,22L21,6C18.78,3.54 15.57,2 12,2Z" />	
+
+		
+		</svg>
+        <span>Pizza</span>
+      </button>
+	  
+	 <button type="button" id="hotdog" class="filter-btn">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+         <path fill="currentColor" d="M21 5.77C20.85 5.65 20.72 5.55 20.59 5.45L20.62 5.41C21.4 4.63 21.4 3.37 20.62 2.59C19.84 1.81 18.58 1.81 17.79 2.59L17.05 3.33C15.68 2.3 13.74 2.4 12.5 3.65L3.65 12.5C2.4 13.74 2.3 15.68 3.33 17.05L2.59 17.79C1.8 18.58 1.8 19.84 2.59 20.62C3.37 21.4 4.63 21.4 5.41 20.62L5.45 20.59C5.55 20.72 5.65 20.85 5.77 21C7.13 22.34 9.35 22.34 10.72 21L20.97 10.72C22.34 9.35 22.34 7.14 21 5.77M4.77 15.61C4.5 15.05 4.6 14.36 5.06 13.9L13.9 5.06C14.36 4.6 15.05 4.5 15.61 4.77L4.77 15.61M19.56 9.3L9.3 19.56C8.72 20.15 7.77 20.15 7.18 19.56C6.6 19 6.6 18 7.18 17.44L17.44 7.18C18 6.6 19 6.6 19.56 7.18C20.15 7.77 20.15 8.72 19.56 9.3Z" />
+		 </svg>
+        <span>Hot Dog</span>
+      </button>
+	  
+	   <button type="button" id="massas" class="filter-btn">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M4 16.5V8H3V7H4V6H3V5H4V4H3V3H9C9.5 3.03 9.95 3.24 10.34 3.63S10.95 4.5 11 5H21V6H11C10.95 6.53 10.73 7 10.34 7.43S9.5 8.05 9 8H7V15.05C7.05 15.05 7.13 15.04 7.24 15S7.44 15 7.5 15C8.06 15 8.7 15.14 9.42 15.42C9.83 14.5 10.53 13.68 11.53 13S13.53 12 14.53 12C16.06 12 17.36 12.53 18.42 13.59S20 15.95 20 17.5C20 17.55 20 17.64 20 17.77S19.97 17.97 19.97 18H3.14C3.27 17.5 3.55 17 4 16.5M6 15.23V8H5V15.7C5.5 15.45 5.81 15.3 6 15.23M9 7V6H7V7H9M9 4H7V5H9V4M5 4V5H6V4H5M5 6V7H6V6H5M2 19H22L20 21H4L2 19Z" />
+		  </svg>
+        <span>Massas</span>
+      </button>
+	  
+    </section>
+
+    <section class="banner">
+      <img id="banner-desktop" src="" alt="Banner do site" />
+      <img id="banner-mobile" src="" alt="Banner do site" />
+    </section>
+
+    <section class="org">
+      <h2>Selecione o estabelecimento</h2>
+
+      <span id="loading-list">Carregando...</span>
+
+      <ul id="org-list" class="hidden">
+      </ul>
+    </section>
+  </main>
+
+  <script type="module" src="data.js"></script>
+  <script type="module">
+    import data from './data.js';
+
+    const organizations = [];
+
+    function cleanActiveClass() {
+      const tags = document.querySelectorAll('.filter-btn');
+      tags.forEach(tag => tag.classList.remove('filter-activated'));
+    }
+
+    function addActiveClass(tag) {
+      const tagBtn = document.getElementById(tag);
+      tagBtn.classList.add('filter-activated');
+    }
+
+    function clearList() {
+      const list = document.getElementById('org-list');
+      list.innerHTML = '';
+    }
+
+    function renderOrgList(data) {
+      const list = document.getElementById('org-list');
+      const item = document.createElement('li');
+      item.innerHTML = `
+            <button id="${data.id}" class="org-card">
+              <div class="card-img">
+                <img src="${data.logoUrl}" alt="${data.name}"/>
+              </div>
+              <div class="card-info">
+                <p class="header">${data.name}</p>
+                <p class="tags">${data.tags.join(", ")}</p>
+              </div>
+            </button>
+          `;
+      list.appendChild(item);
+
+      document.getElementById(data.id).addEventListener('click', () => selectStore(data.id));
+    }
+
+    function filterByTag(tag) {
+      cleanActiveClass();
+      addActiveClass(tag);
+
+      if ("all" === tag) {
+        clearList();
+
+        organizations.forEach(renderOrgList);
+        return
+      }
+
+      const filteredData = data.organizations.filter(org => {
+        if (org.tags.includes(tag)) return org;
+      });
+
+      let filteredOrg = organizations.filter(org => filteredData.some(filtered => filtered.suffix === org.urlSuffix)
+      );
+
+      clearList();
+      filteredOrg.forEach(renderOrgList);
+    }
+
+    function toogleFilter() {
+      document.getElementById('input-filter').classList.toggle('hidden');
+      document.getElementById('search-svg').classList.toggle('hidden');
+      document.getElementById('close-svg').classList.toggle('hidden');
+
+      clearList();
+      organizations.forEach(renderOrgList);
+    }
+
+    function filterByInputSearch() {
+      const input = document.getElementById('search-input')
+      const search = input.value.toLowerCase();
+
+      const filteredData = organizations.filter(org => {
+        const hasTag = org.tags.some(tag => tag.toLowerCase().includes(search));
+
+        if (org.name.toLowerCase().includes(search) || hasTag) return org;
+      });
+
+      clearList();
+      filteredData.forEach(renderOrgList);
+    }
+
+    function selectStore(id) {
+      const orgSelected = organizations.find(org => org.id === id);
+
+      const storageData = JSON.stringify(
+        {
+          url: orgSelected.urlSuffix,
+          name: orgSelected.name,
+          id: orgSelected.id
+        }
+      );
+      localStorage.setItem("@Marketplace:selected-store", storageData)
+
+      window.location.href = "store.html";
+    }
+
+    (function () {
+      document.getElementById('navbar-header').innerHTML = data.title;
+      document.getElementById('banner-desktop').src = data.bannerUrlDesktop;
+      document.getElementById('banner-mobile').src = data.bannerUrlMobile;
+
+      document.getElementById('filter-input-btn').addEventListener('click', toogleFilter);
+      document.getElementById('search-input').addEventListener('change', filterByInputSearch);
+
+      const filterArr = document.getElementsByClassName('filter-btn')
+
+      Array.from(filterArr).forEach(filter => {
+        filter.addEventListener("click", () => filterByTag(filter.id));
+      })
+
+      Promise.all(
+        data.organizations.forEach(async (org) => {
+          const url = `https://prd-pedido-online-api.azurewebsites.net/api/organization/${org.suffix}`;
+
+          fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              if (!data.status || data.status !== 404) {
+                renderOrgList({ ...data, tags: org.tags });
+                organizations.push({ ...data, tags: org.tags });
+              }
+            })
+        })
+      ).finally(() => {
+        document.getElementById('loading-list').classList.add('hidden');
+        document.getElementById('org-list').classList.remove('hidden');
+      })
+    })();
+  </script>
+</body>
+
+</html>
