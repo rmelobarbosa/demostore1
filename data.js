@@ -1,6 +1,6 @@
 // ALTERAVEL
 export default {
-  "title": "Ilha Food Park",
+  "title": "Super Centro Boqueirão",
   "bannerUrlDesktop": "https://rmelobarbosa.github.io/demostore1/supercentro2.png",
   "bannerUrlMobile": "https://rmelobarbosa.github.io/demostore1/supercentro1.png",
   "organizations": [
