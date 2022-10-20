@@ -26,7 +26,7 @@ export default {
     },
     {
       "tags": ["pastel"],
-      "suffix": "levilolanches"
+      "suffix": "fabricadebolosvoalzira"
     },
     
     {
