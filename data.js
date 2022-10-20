@@ -9,8 +9,8 @@ export default {
       "suffix": "oxentemix"
     },
     {
-      "tags": ["hotdog"],
-      "suffix": "catioroaracagy"
+      "tags": ["massas"],
+      "suffix": "massasveneza"
     },
     {
       "tags": ["hotdog", "hamburguer"],
@@ -27,10 +27,10 @@ export default {
 	{
       "tags": ["massas"],
       "suffix": "nationsfoodslz"
-    }
+    },
 	  {
-      "tags": ["massas"],
-      "suffix": "massasveneza"
+      "tags": ["hotdog"],
+      "suffix": "catioroaracagy"
     }
   ]
 }
