@@ -28,5 +28,9 @@ export default {
       "tags": ["massas"],
       "suffix": "nationsfoodslz"
     }
+	  {
+      "tags": ["massas"],
+      "suffix": "massasveneza"
+    }
   ]
 }
