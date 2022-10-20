@@ -24,11 +24,11 @@ export default {
       "tags": ["pastel"],
       "suffix": "pastelandiaslz"
     },
-	{
+    {
       "tags": ["massas"],
       "suffix": "nationsfoodslz"
     },
-	  {
+    {
       "tags": ["hotdog"],
       "suffix": "catioroaracagy"
     }
