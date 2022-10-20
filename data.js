@@ -25,9 +25,10 @@ export default {
       "suffix": "pastelandiaslz"
     },
     {
-      "tags": ["massas"],
-      "suffix": "nationsfoodslz"
+      "tags": ["pastel"],
+      "suffix": "levilolanches"
     },
+    
     {
       "tags": ["hotdog"],
       "suffix": "catioroaracagy"
